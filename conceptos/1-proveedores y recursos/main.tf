@@ -20,9 +20,12 @@ provider "docker" {
 
 resource "docker_container" "micontenedor" {
     # Configuración del recurso... que dependerá del tipo de recurso
-    name  = "minginx"
+    name        = "minginx"
     # -p 172.31.44.24:8080:80
-    image = docker_image.miimagen.image_id # Referencio a otro recurso
+    image       = docker_image.miimagen.image_id # Referencio a otro recurso
+    
+    cpu_shares  = 2048
+    env         = [ "VARIABLE1=VALOR1", "VARIABLE2=VALOR2"]
     
     ports {
         internal    = 80
@@ -32,7 +35,7 @@ resource "docker_container" "micontenedor" {
     
     ports {
         internal    = 443
-        external    = 8443
+        external    = 8444
         ip          = "172.31.44.24"
     }
     

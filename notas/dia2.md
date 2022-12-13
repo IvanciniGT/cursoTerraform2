@@ -53,4 +53,38 @@ Me permite aplciar operaciones sobre un script:
 
 - Objects
 
+# Variables en terraform
 
+Nos permiten parametrizar un script
+
+De cada variable tendré que definir una serie de datos:
+- Nombre
+- Descripción
+- Tipo de datos que puede albergar
+- Valor por defecto
+
+# Cómo puedo suministrar valores a una variable en TERRAFORM
+
+- A través de un fichero .auto.tfvars
+    Se cargan por defecto... con prioridad muy baja
+- En un fichero de variables que suministraré al comando terraform mediante el
+  argumento --var-file.
+    Esos ficheros de variables llevarán extensión .tfvars
+- A través de la terminal suministrando un argumento --var VARIABLE=valor
+    Nos gusta esto? NO. Por qué? ES COMO LA LEJIA ESTRELLA !!!!
+                                 No deja ni huella !
+    Esto solo lo usamos en un escenario: 
+                                 CUANDO NO QUIERA DEJAR HUELLA !
+                                 para suministrar una credencial!
+- Poniendo un valor por defecto al declarar la variable
+- En ningún sitio: Terraform pregunta por consola
+    Nunca... A tomar por culo la automatización !
+    TERRAFORMM NUNCA SE EJECUTA CON UNA VARIABLE DESASIGNADA !
+
+# PRIORIDAD DE LOS VALORES DE VARIABLES
+
+- Los suministrados mediante el argumento --var
+- Los suministrados mediante el argumento --var-file
+- Los de los ficheros .auto.tfvars
+- Los por defecto del variables.tf
+- Si no, se piden interactivamente
