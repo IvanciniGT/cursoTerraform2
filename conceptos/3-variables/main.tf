@@ -1,8 +1,8 @@
 resource "docker_container" "micontenedor" {
-    name        = "minginx"
+    name        = var.nombre_contenedor
     image       = docker_image.miimagen.image_id # Referencio a otro recurso
     cpu_shares  = var.cuota_cpu
-    env         = [ "VARIABLE1=VALOR1", "VARIABLE2=VALOR2"]
+    env         = var.variables_entorno
     ports {
         internal    = 80
         external    = 8080
@@ -16,5 +16,7 @@ resource "docker_container" "micontenedor" {
 }
 
 resource "docker_image" "miimagen" {
-    name = "nginx:latest"
+    #name = var.imagen
+    # Interpolación de variables para generar un texto
+    name = "${var.imagen_repo}:${var.imagen_version}"
 }
