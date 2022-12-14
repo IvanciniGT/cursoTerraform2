@@ -54,4 +54,19 @@ variable "puertos_a_exponer" {
                                     ip      = optional(string, "0.0.0.0")
                               }))
     description = "Puertos a exponer del contenedor"
+    
+    validation {
+        condition       = alltrue( [ for puerto in var.puertos_a_exponer: puerto.interno > 0 && puerto.interno <= 32000 ] )
+        error_message   = "El puerto interno debe estar entre 1 y 32000"
+    }
+    validation {
+        condition       = alltrue( [ for puerto in var.puertos_a_exponer: puerto.externo > 0 && puerto.externo <= 32000 ] )
+        error_message   = "El puerto externo debe estar entre 1 y 32000"
+    }
+    validation {
+        condition       = alltrue( [ for puerto in var.puertos_a_exponer: 
+                                        length(regexall("^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]?|0)[.]){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]?|0)$", puerto.ip)) == 1
+                                    ] )
+        error_message   = "La ip debe tener un formato válido"
+    }
 }
