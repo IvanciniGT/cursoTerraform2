@@ -2,16 +2,22 @@ resource "docker_container" "micontenedor" {
     name        = var.nombre_contenedor
     image       = docker_image.miimagen.image_id # Referencio a otro recurso
     cpu_shares  = var.cuota_cpu
-    env         = var.variables_entorno
-    ports {
-        internal    = 80
-        external    = 8080
-        ip          = "127.0.0.1"
-    }
-    ports {
-        internal    = 443
-        external    = 8444
-        ip          = "172.31.44.24"
+    env         = [ for clave, valor in var.variables_entorno: 
+                        "${clave}=${valor}" ]
+
+    # Cuando tenemos un bloque o lista de bloques que condicionalmente deben 
+    # aparecer o no o muchas veces, hacemos uso de la palabra "dynamic"
+    
+    dynamic "ports" {
+        for_each = var.puertos_a_exponer # Aqui debemos poner una **LISTA** !!!
+        iterator = puerto   # Nombre de la variable donde se irán alcenando 
+                            # cada uno de los puertos (elementos de la lista)
+                            # suminitrados en el for_each, al iterarlos
+        content {
+            internal    = puerto.value["interno"]
+            external    = puerto.value["externo"]
+            ip          = puerto.value["ip"]
+        }
     }
 }
 

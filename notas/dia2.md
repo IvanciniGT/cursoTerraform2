@@ -47,11 +47,13 @@ Me permite aplciar operaciones sobre un script:
 - Map(...)      Es un diccionario, Tabla hash, array asociativo:
                 Conjunto clave-valor de elementos
                 { clave = valor , clave2 = valor2 }
+                Las claves son siempre strings
 - Block         ESTO SON RAROS
                 Como si fueran mapas... pero con 2 salvedades... Más bien con 1.
 
-
-- Objects
+- Objects       Un object es como un mapa, solo que:
+                 - Las claves que se pueden usar, están predefinidas
+                 - Y los tipos de datos se definen para cada clave
 
 # Variables en terraform
 
