@@ -30,7 +30,7 @@ resource "docker_container" "balanceador_de_carga" {
     }
 }
 
-resource "docker_container" "mis_contenesores_personalizados" {
+resource "docker_container" "mis_contenedores_personalizados" {
     
     for_each    = var.contenedores_personalizados # Aqui debemos poner un **MAPA** !!!
     # Al usar un for_each dentro de un resource, tenemos a nuestra disposición 
