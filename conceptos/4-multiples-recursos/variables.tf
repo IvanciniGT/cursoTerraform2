@@ -12,3 +12,8 @@ variable "contenedores_personalizados" {
     type        = map(number)
     description = "Contenedores personalizados a crear"
 }
+
+variable "contenedores_mas_personalizados" {
+    type        = 
+    description = "Contenedores mas personalizados a crear"
+}
