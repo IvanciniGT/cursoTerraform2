@@ -49,16 +49,29 @@ resource "docker_container" "mis_contenedores_personalizados" {
 }
 resource "docker_container" "mis_contenedores_mas_personalizados" {
     
-    for_each    = var.contenedores_personalizados # Aqui debemos poner un **MAPA** !!!
+    for_each    = var.contenedores_mas_personalizados # Aqui debemos poner un **MAPA** !!!
     # Al usar un for_each dentro de un resource, tenemos a nuestra disposición 
     # La variable each, a la que podemos pedir el each.key y el each.value
     name        = each.key
     image       = docker_image.miimagen.image_id # Referencio a otro recurso
     
     ports {
-        internal    = 
-        external    = 
-        ip          = 
+        internal    = each.value.interno
+        external    = each.value.externo
+        ip          = each.value.ip
+    }
+}
+
+resource "docker_container" "mis_contenedores_mas_personalizados_2" {
+    
+    count       = length(var.contenedores_personalizados_2)
+    name        = var.contenedores_personalizados_2[count.index].nombre
+    image       = docker_image.miimagen.image_id # Referencio a otro recurso
+    
+    ports {
+        internal    = var.contenedores_personalizados_2[count.index].interno
+        external    = var.contenedores_personalizados_2[count.index].externo
+        ip          = var.contenedores_personalizados_2[count.index].ip
     }
 }
 

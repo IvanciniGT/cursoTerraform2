@@ -14,6 +14,20 @@ variable "contenedores_personalizados" {
 }
 
 variable "contenedores_mas_personalizados" {
-    type        = 
+    type        = map(object({
+                                    interno = number
+                                    externo = number
+                                    ip      = optional(string, "0.0.0.0")
+                              }))
+    description = "Contenedores mas personalizados a crear"
+}
+
+variable "contenedores_personalizados_2" {
+    type        = list(object({
+                                    nombre  = string
+                                    interno = number
+                                    externo = number
+                                    ip      = optional(string, "0.0.0.0")
+                              }))
     description = "Contenedores mas personalizados a crear"
 }
