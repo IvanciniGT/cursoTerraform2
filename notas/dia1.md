@@ -133,13 +133,13 @@ Tradicionalmente se llaman:
 
 En esos archivos, esribimos bloques de código en sintaxis HCL.
 Hay unos pocos de tipos de bloques básicos:
-- terraform     Nos permite definir los proveedores que vamos a usar                MARTES
-- provider      Dar la configuración concreta de un proveedor                       MARTES
-- resource      Definir un recurso que quiero gestionar por un proveedor concreto   MARTES, MIERCOLES
+√ terraform     Nos permite definir los proveedores que vamos a usar                MARTES
+√ provider      Dar la configuración concreta de un proveedor                       MARTES
+√ resource      Definir un recurso que quiero gestionar por un proveedor concreto   MARTES, MIERCOLES
     - provisioners
-- output        Información que quiero obtener de vuelta de los recursos            MARTES
-- variable      PARAMETRIZAR los scripts     ** LO MAS COMPLEJO DE TERRAFORM        MARTES, MIERCOLES, JUEVES
-- locals        Otro tipo de "variables"... de uso interno                          JUEVES
+√ output        Información que quiero obtener de vuelta de los recursos            MARTES
+√ variable      PARAMETRIZAR los scripts     ** LO MAS COMPLEJO DE TERRAFORM        MARTES, MIERCOLES, JUEVES
+√ locals        Otro tipo de "variables"... de uso interno                          JUEVES
 - data                                                                              JUEVES
 - module                                                                            JUEVES
 
