@@ -25,3 +25,25 @@ Para ejecutar Ansible:
     - puerto: 22 (estará abierto en el firewwall?)
     - clave ssh?
 
+---
+
+Al programar, no tiramos código en ficheros tal cual.... lo organizamos
+
+funciones, métodos, procedimientos
+
+funcion salidas NOMBRE(entradas)
+
+En terraform a esas funciones las llamamos MODULOS 
+
+# modulo es un conjunto de:
+- Recursos
+- Variables
+- Outputs
+- Proveedores
+
+# script es un conjunto de:
+- Recursos
+- Variables
+- Outputs
+- Proveedores
+- Configuracion de un proveedor

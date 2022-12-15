@@ -13,7 +13,7 @@ block
 
 # Comandos de terraform
 
-- init          Descarga los providers (y algo más que ya nos enteraremos llegado el caso!)
+- init          Descarga los providers (y algo más que ya nos enteraremos llegado el caso!: modulos)
 - validate
 - refresh       Actualiza el .tfstate preguntando al(os) providers
 - plan          Comparando el "estado real" del entorno con el estado deseado para ese entorno
