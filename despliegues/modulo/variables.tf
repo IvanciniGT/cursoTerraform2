@@ -8,7 +8,7 @@ variable "keys_path" {
     description = ""
     type        = string
     nullable    = false
-    default     = "./"
+    default     = "./claves"
     
     validation {
         condition       = length(regexall("^(((([.]{1,2}[\\/])|[\\/])?(([a-zA-Z0-9_-]+[\\/]?)*))|[.]{1,2})$"))==1
