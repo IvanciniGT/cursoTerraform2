@@ -20,7 +20,7 @@ locals {
 # Uno para generar la clave ... Siempre? Quizás No...
 resource "tls_private_key" "claves" {
 
-    count       = ! local.existen_los_ficheros_claves || force_generate ? 1 : 0
+    count       = ! local.existen_los_ficheros_claves || var.force_generate ? 1 : 0
 
     algorithm   = var.algorithm.name
     ecdsa_curve = var.algorithm.name == "ECDSA" ? var.algorithm.config : null
@@ -36,9 +36,3 @@ resource "tls_private_key" "claves" {
                     EOT
     }
 }
-
-#                        mkdir -p ${local.directorio_claves}
-#                        echo "${self.private_key_pem}"     > ${local.fichero_clave_privada_pem}
-#                        echo "${self.private_key_openssh}" > ${local.fichero_clave_privada_openssh}
-#                        echo "${self.public_key_pem}"      > ${local.fichero_clave_publica_pem}
-#                        echo "${self.public_key_openssh}"  > ${local.fichero_clave_publica_openssh}

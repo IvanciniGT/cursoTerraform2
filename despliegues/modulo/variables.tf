@@ -35,9 +35,10 @@ variable "algorithm" {
     # RSA
     validation {
         condition       = ( var.algorithm.name != "RSA" ? true : 
-                             ! can(to_number(var.algorithm.config)) ? false :
-                             to_number(var.algorithm.config) > 0 ) 
-        error_message   = "El nombre del algoritmo debe ser: RSA, ECDSA o ED25519"
+                             (can(tonumber(var.algorithm.config)) ? 
+                             tonumber(var.algorithm.config) > 0: 
+                             false ) )
+        error_message   = "Para el algoritmo RSA la configuración debe incluir un numero mayor que 0"
     }
     # ECDSA
     validation {

@@ -18,6 +18,7 @@ output "keys" {
                                     openssh = tls_private_key.claves[0].public_key_openssh
                                  }
                 }
+    sensitive = true
 }
 
 # keys.publickey.pem
