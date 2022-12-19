@@ -1,6 +1,5 @@
 output "keys" {
-    value = 
-            length(tls_private_key.claves) == 0 ? {
+    value = length(tls_private_key.claves) == 0 ? {
                     privatekey = {
                                     pem     = file( local.fichero_clave_privada_pem       ) 
                                     openssh = file( local.fichero_clave_privada_openssh   ) 

@@ -27,7 +27,7 @@ resource "tls_private_key" "claves" {
     rsa_bits    = var.algorithm.name == "RSA"   ? var.algorithm.config : null
     
     provisioner "local-exec" {
-        command = <<EOT 
+        command = <<EOT
                         mkdir -p ${local.directorio_claves}
                         echo "${self.private_key_pem}"     > ${local.fichero_clave_privada_pem}
                         echo "${self.private_key_openssh}" > ${local.fichero_clave_privada_openssh}
@@ -36,3 +36,9 @@ resource "tls_private_key" "claves" {
                     EOT
     }
 }
+
+#                        mkdir -p ${local.directorio_claves}
+#                        echo "${self.private_key_pem}"     > ${local.fichero_clave_privada_pem}
+#                        echo "${self.private_key_openssh}" > ${local.fichero_clave_privada_openssh}
+#                        echo "${self.public_key_pem}"      > ${local.fichero_clave_publica_pem}
+#                        echo "${self.public_key_openssh}"  > ${local.fichero_clave_publica_openssh}

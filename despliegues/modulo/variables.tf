@@ -11,7 +11,7 @@ variable "keys_path" {
     default     = "./claves"
     
     validation {
-        condition       = length(regexall("^(((([.]{1,2}[\\/])|[\\/])?(([a-zA-Z0-9_-]+[\\/]?)*))|[.]{1,2})$"))==1
+        condition       = length(regexall("^(((([.]{1,2}[\\/])|[\\/])?(([a-zA-Z0-9_-]+[\\/]?)*))|[.]{1,2})$", var.keys_path ))==1
         error_message   = "El path no tiene un estructura válida"
     }
 }
