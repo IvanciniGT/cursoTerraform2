@@ -140,7 +140,7 @@ Hay unos pocos de tipos de bloques básicos:
 √ output        Información que quiero obtener de vuelta de los recursos            MARTES
 √ variable      PARAMETRIZAR los scripts     ** LO MAS COMPLEJO DE TERRAFORM        MARTES, MIERCOLES, JUEVES
 √ locals        Otro tipo de "variables"... de uso interno                          JUEVES
-- data                                                                              JUEVES
+√ data          Nos ayuda a hacer una búsqueda en el proveedor y obtener información de vuelta                                                                    JUEVES
 √ module        Son una especie de funciones, que agrupan la creación de unos recursos                                                                     JUEVES
 
 
