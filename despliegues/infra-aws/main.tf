@@ -1,10 +1,42 @@
 resource "aws_instance" "miservidor"{
-    tags = {
-        Name = "servidor-${var.nombre}"
-    }
-    ami = data.aws_ami.miami.image_id
+    tags            = {
+                        Name = "servidor-${var.nombre}"
+                    }
+    ami             = data.aws_ami.miami.image_id
+    key_name        = aws_key_pair.miclave_en_aws.key_name # #"clave-publica-de-${var.nombre}" # Esto sería una cagada de proporciones EPICAS !
+                                                       # Funcionaría ?
+                                                        # No lo se... puede que si... puede que no... 
+                                                        # Qué va a crear primero terraform? 
+                                                        # El servidor o las claves? Ni idea
+    instance_type   = "t2.micro"
+    security_groups = [ aws_security_group.grupo_seguridad.name ]
 
-    instance_type = "t2.micro"
+    # Test
+    # ping
+    provisioner "local-exec" {
+        command = "sleep 20 && ping -c 1 ${self.public_ip}"
+    }
+    
+    # conexión por ssh
+    connection {
+        type    = "ssh"
+        host    = self.public_ip
+        port    = 22
+        user    = "ubuntu"
+        private_key = module.misclaves.keys.privatekey.pem
+    }
+    provisioner "remote-exec" {
+        inline = [ "echo EUREKA" ]
+    }
+}
+
+resource "aws_key_pair" "miclave_en_aws" {
+    key_name   = "clave-publica-de-${var.nombre}"
+    public_key = module.misclaves.keys.publickey.openssh
+}
+
+module "misclaves" {
+    source = "../modulo"
 }
 
 # Propietario de la imagen: CANONICAL : 099720109477
@@ -29,5 +61,31 @@ data "aws_ami" "miami" {
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
+  }
+}
+
+resource "aws_security_group" "grupo_seguridad" {
+  name = "reglas-${var.nombre}"
+  description = "Permitir todo"
+  vpc_id      = null 
+
+  ingress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "reglas-${var.nombre}"
   }
 }

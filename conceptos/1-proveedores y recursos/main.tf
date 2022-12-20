@@ -48,4 +48,4 @@ resource "docker_image" "miimagen" {
 }
 
 # A la hora de ejecutar un script, terraform calcula un grafo de dependencias
-# Para generar ese grafop, terraform se basa precisamente en la DEPENDENCIAS ENTRE RECURSOS
+# Para generar ese grafo, terraform se basa precisamente en la DEPENDENCIAS ENTRE RECURSOS
